@@ -46,11 +46,15 @@ defmodule Elissues.CLI do
     System.halt(0)
   end
 
-  def process({user, repo, count}) do
-    IO.puts """
-    ...
-    Fetching #{count} issues of: github.com/#{user}/#{repo}
-    """
-    System.halt(0)
+  def process({user, repo, _count}) do
+    Elissues.GithubIssues.fetch(user, repo)
+    |> decode_response()
+    |> IO.inspect
+  end
+
+  defp decode_response({:ok, body}), do: body
+  defp decode_response({:error, error}) do
+    IO.puts "Error fetching issues from Github: #{error["message"]}"
+    System.halt(2)
   end
 end
