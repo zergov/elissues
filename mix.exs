@@ -22,6 +22,7 @@ defmodule Elissues.MixProject do
   defp deps do
     [
       { :httpoison, "~> 1.4" },
+      { :poison, "~> 3.1" },
     ]
   end
 end
