@@ -7,7 +7,9 @@ defmodule Elissues.CLI do
   @default_count 4
 
   def run(argv) do
-    parse_args(argv)
+    argv
+    |> parse_args
+    |> process
   end
 
   @doc """
@@ -16,7 +18,7 @@ defmodule Elissues.CLI do
   Otherwise, it's a github username, a repository and optionally the number
   of issues to fetch from github.
 
-  Return a tuple of `{user, project, count}` or :help
+  Return a tuple of `{user, repo, count}` or :help
   """
   def parse_args(argv) do
     OptionParser.parse(argv, switches: [ help: :boolean],
@@ -25,15 +27,30 @@ defmodule Elissues.CLI do
     |> args_to_internal_representation()
   end
 
-  defp args_to_internal_representation([user, project, count]) do
-    { user, project, String.to_integer(count) }
+  defp args_to_internal_representation([user, repo, count]) do
+    { user, repo, String.to_integer(count) }
   end
 
-  defp args_to_internal_representation([user, project]) do
-    { user, project, @default_count }
+  defp args_to_internal_representation([user, repo]) do
+    { user, repo, @default_count }
   end
 
   defp args_to_internal_representation(_) do
     :help
+  end
+
+  def process(:help) do
+    IO.puts """
+    usage: elissues <username> <repo> [ count | #{@default_count} ]
+    """
+    System.halt(0)
+  end
+
+  def process({user, repo, count}) do
+    IO.puts """
+    ...
+    Fetching #{count} issues of: github.com/#{user}/#{repo}
+    """
+    System.halt(0)
   end
 end
