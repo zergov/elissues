@@ -10,6 +10,7 @@ defmodule Elissues.CLI do
     argv
     |> parse_args
     |> process
+    |> sort_by_latest()
   end
 
   @doc """
@@ -50,6 +51,11 @@ defmodule Elissues.CLI do
     Elissues.GithubIssues.fetch(user, repo)
     |> decode_response()
     |> IO.inspect
+  end
+
+  def sort_by_latest(issues) do
+    issues
+    |> Enum.sort(&(&1["created_at"] < &2["created_at"]))
   end
 
   defp decode_response({:ok, body}), do: body
