@@ -2,7 +2,7 @@
 CLI application made in Elixir that lets you lookup github repo issues using the Github API.
 
 ## Installation
-Make sure you have elixir installed.
+Make sure you have [elixir installed](https://elixir-lang.org/install.html).
 
 Build an executable:
 ```
