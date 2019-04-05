@@ -25,6 +25,6 @@ defmodule CliTest do
     ]
 
     sorted = sort_by_latest(issues)
-    assert (sorted |> Enum.map(&(&1["created_at"]))) == ["a", "g", "z"]
+    assert (sorted |> Enum.map(&(&1["created_at"]))) == ["z", "g", "a"]
   end
 end

@@ -57,7 +57,7 @@ defmodule Elissues.CLI do
 
   def sort_by_latest(issues) do
     issues
-    |> Enum.sort(&(&1["created_at"] < &2["created_at"]))
+    |> Enum.sort(&(&1["created_at"] > &2["created_at"]))
   end
 
   defp decode_response({:ok, body}), do: body

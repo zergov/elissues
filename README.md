@@ -19,7 +19,7 @@ usage: elissues <username> <repo> [ count | 4 ]
 ```
 $ elissues elixir-lang elixir 3
 >>
-| 2017-06-22T09:41:01Z | Improve ExUnit output for assertions on process mailbox        | https://github.com/elixir-lang/elixir/issues/6248
-| 2017-09-28T08:56:29Z | Support Erlang 21 new features                                 | https://github.com/elixir-lang/elixir/issues/6611
-| 2017-10-09T16:07:43Z | with clause cannot match when case is inside else block        | https://github.com/elixir-lang/elixir/issues/6738
+| 2019-03-31T08:50:28Z | Add a better error message when overriding an umbrella dependency      | https://github.com/elixir-lang/elixir/pull/8924
+| 2019-03-31T05:22:24Z | Cannot override an umbrella dependency                                 | https://github.com/elixir-lang/elixir/issues/8922
+| 2019-03-20T11:35:57Z | Display the actual doctest code when doctset fails                     | https://github.com/elixir-lang/elixir/pull/8903
 ```

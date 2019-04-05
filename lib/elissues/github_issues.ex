@@ -21,6 +21,6 @@ defmodule Elissues.GithubIssues do
   end
 
   def simplified(%{ "title" => title, "html_url" => link, "created_at" => created_at }) do
-    "| #{created_at} | #{title} \t| #{link}"
+    "| #{created_at} | #{title}\t| #{link}"
   end
 end
