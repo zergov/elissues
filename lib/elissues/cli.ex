@@ -10,7 +10,6 @@ defmodule Elissues.CLI do
     argv
     |> parse_args
     |> process
-    |> sort_by_latest()
   end
 
   @doc """
@@ -47,10 +46,13 @@ defmodule Elissues.CLI do
     System.halt(0)
   end
 
-  def process({user, repo, _count}) do
+  def process({user, repo, count}) do
     Elissues.GithubIssues.fetch(user, repo)
     |> decode_response()
-    |> IO.inspect
+    |> sort_by_latest()
+    |> Enum.take(count)
+    |> Enum.map(&(Elissues.GithubIssues.simplified(&1)))
+    |> Enum.map(&(IO.puts(&1)))
   end
 
   def sort_by_latest(issues) do

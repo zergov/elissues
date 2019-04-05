@@ -19,4 +19,8 @@ defmodule Elissues.GithubIssues do
   def handle_response({ _, %{status_code: _, body: body } }) do
     { :error, body |> Poison.Parser.parse!() }
   end
+
+  def simplified(%{ "title" => title, "html_url" => link, "created_at" => created_at }) do
+    "| #{created_at} | #{title} \t| #{link}"
+  end
 end
